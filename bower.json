@@ -1,0 +1,22 @@
+{
+  "name": "tests",
+  "description": "Formulário montado com Angular e Bootstrap, onde os testes desenvolvidos farão validações.",
+  "main": "karma.conf.js",
+  "license": "ISC",
+  "homepage": "https://github.com/Gtosta96/bank",
+  "authors": [
+    "Gabriel Tosta"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-mocks": "^1.5.8",
+    "angular-route": "^1.5.8",
+    "bootstrap": "^3.3.7"
+  }
+}

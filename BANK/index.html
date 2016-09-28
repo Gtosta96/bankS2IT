@@ -1,0 +1,35 @@
+<!-- Indica que a aplicação rodará suportando HTML5 -->
+<!DOCTYPE html>
+<html>
+	<head>
+		 <!-- Indica ao browser que a página utilizará caracteres Unicode, para exibir letras com acentos e cedilha -->
+		<meta charset="utf-8">
+		<!-- Força o IE a usar as definições de CSS mais recentes, e evita que ele quebre o visual quando estiver no modo de compatibilidade -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<!-- Faz a aplicação ocupar todo o espaço disponível na janela, tanto em celulares, como em tablets ou em PC’s -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Formulário</title>
+
+		<!-- Application CSS -->
+		<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+		<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap-theme.css">
+
+		<!-- Application external resources -->
+		<script src="../bower_components/angular/angular.js"></script>
+		<script src="../bower_components/angular-route/angular-route.js"></script>
+
+		<!-- Application configuration -->
+		<script src="app/app.modules.js"></script>
+		<script src="app/app.routes.js"></script>
+
+		<script src="app/components/home/home.controller.js"></script>
+
+		<script src="app/shared/bankStatement/bankStatement.service.js"></script>
+		<script src="app/shared/storage/storage.service.js"></script>
+
+	</head>
+	<body ng-app="bank">
+		<div class="container" ng-view></div>
+	</body>
+</html>
