@@ -4,6 +4,12 @@ angular.module('bank',
 
 		'bank.home.controller',
 
+		'bank.collapse.directive',
+
 		'bank.bankStatement.service',
-		'bank.storage.service'
+		'bank.storage.service',
+
+		'bank.friendlyActionType.filter',
+
+		'ui.bootstrap'
 	]);

@@ -7,14 +7,23 @@ function homeController(BankStatementService) {
     var vm = this;
     vm.mensagem = {};
     vm.filtro = '';
-    vm.data = getBankStatements();
     vm.remove = remove;
+    vm.actions = [];
+    vm.addAction = addAction;
+
+    getBankStatements();
 
     function getBankStatements() {
-        vm.data = BankStatementService.get();
+        vm.actions = BankStatementService.get();
     };
 
-    function remove(contato) {
-        BankStatementService.remove({id: contato.id});
+    function addAction(action) {
+        BankStatementService.add(action);
+        getBankStatements();
+    };
+
+    function remove(action) {
+        BankStatementService.remove(action);
+        getBankStatements();
     };
 };

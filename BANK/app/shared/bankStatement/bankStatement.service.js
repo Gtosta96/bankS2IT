@@ -3,7 +3,7 @@ angular.module('bank.bankStatement.service', [])
 
 bankStatementService.$inject = ['$log', 'StorageService'];
 function bankStatementService($log, StorageService) {
-	const CART_KEY = 'cart';
+	const ACTIONS_KEY = 'actions';
 	return {
 		add: add,
 		remove: remove,
@@ -11,29 +11,29 @@ function bankStatementService($log, StorageService) {
 		clear: clear
 	};
 
-	function add(product) {
-		var cart = StorageService.get(CART_KEY) || {};
+	function add(object) {
+		var actions = StorageService.get(ACTIONS_KEY) || [];
+		object.id = actions.length;
+		actions.push(object);
 
-		var productInCart = cart[product.id];
-		if(productInCart) {
-			productInCart.qntCart++;
-		} else {
-			product.qntCart = 1;
-			cart[product.id] = product;
-		}
-
-		StorageService.set(CART_KEY, cart);
+		StorageService.set(ACTIONS_KEY, actions);
 	};
 
 	function get() {
-		return StorageService.get(CART_KEY);
-	}
+		return StorageService.get(ACTIONS_KEY) || [];
+	};
 
-	function remove(key) {
- 	   var cart = StorageService.get(CART_KEY);
+	function remove(action) {
+		var actions = StorageService.get(ACTIONS_KEY);
+
+		for(var i = 0; i < actions.length; i++) {
+			if(actions[i].id == action.id) actions.splice(i, 1);
+		}
+		
+		StorageService.set(ACTIONS_KEY, actions);
    };
 
    function clear(key) {
-	   return localStorage.removeItem(CART_KEY);
+	   return localStorage.removeItem(ACTIONS_KEY);
    };
 };
