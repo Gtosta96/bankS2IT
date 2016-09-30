@@ -1,12 +1,14 @@
 # S2IT - BANK
 
-
+O projeto foi criado utilizando http-server para dispensar o uso de um servidor, execute os comandos abaixo para configuração e execução da aplicação.
 **Executar os comandos na linha de comando dentro da pasta do projeto:**
 ```
 npm install -g bower
 npm install
 bower install
-npm start
+
+npm start (ao abrir o browser)
+npm test (testes)
 ```
 
 Styleguide da arquitetura (JohnPapa):

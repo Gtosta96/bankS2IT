@@ -22,6 +22,20 @@ function homeController(BankStatementService) {
 
     function getBankStatements() {
         vm.actions = BankStatementService.get();
+        setActionsTotal();
+    };
+
+    function addAction(action) {
+        if(action.value) BankStatementService.add(action);
+        getBankStatements();
+    };
+
+    function remove(action) {
+        BankStatementService.remove(action);
+        getBankStatements();
+    };
+
+    function setActionsTotal() {
         var deposit = 0;
         var withdraw = 0;
         var action;
@@ -35,15 +49,5 @@ function homeController(BankStatementService) {
         }
 
         vm.total = deposit - withdraw;
-    };
-
-    function addAction(action) {
-        BankStatementService.add(action);
-        getBankStatements();
-    };
-
-    function remove(action) {
-        BankStatementService.remove(action);
-        getBankStatements();
     };
 };

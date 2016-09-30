@@ -5,7 +5,7 @@ module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '', //__dirname + '/ABKJ'
+    basePath: '',
 
 
     // frameworks to use
@@ -18,7 +18,7 @@ module.exports = function(config) {
         './bower_components/angular/angular.js',
         './bower_components/angular-route/angular-route.js',
         './bower_components/angular-mocks/angular-mocks.js',
-        './ABKJ/**/*.js'
+        './BANK/**/*.js'
     ],
 
 

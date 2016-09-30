@@ -1,69 +1,64 @@
-<div class="jumbotron">
-	<h1 class="text-center">
-		Bem-vindo - Bank
-	</h1>
-</div>
-<form name="actionForm" class="form-inline" ng-submit="vm.addAction(action); action.value = ''">
-	<div class="row margin-bottom">
-		<div class="col-xs-6">
-			<div class="centralize">
-				<div class="form-group">
-					<div class="btn-group">
-						<label class="btn btn-success" ng-model="action.actionType" uib-btn-radio="'withdraw'" ng-init="action.actionType = 'withdraw'">Saque</label>
-						<label class="btn btn-success" ng-model="action.actionType" uib-btn-radio="'deposit'">Depósito</label>
+<div class="container">
+	<div class="jumbotron">
+		<h1 class="text-center">
+			Bem-vindo - Bank
+		</h1>
+	</div>
+	<form name="actionForm" class="form-inline" ng-submit="vm.addAction(action); action.value = ''">
+		<div class="row margin-bottom">
+			<div class="col-xs-6">
+				<div class="centralize">
+					<div class="form-group">
+						<div class="btn-group">
+							<label class="btn btn-success" ng-model="action.actionType" uib-btn-radio="'withdraw'" ng-init="action.actionType = 'withdraw'">Saque</label>
+							<label class="btn btn-success" ng-model="action.actionType" uib-btn-radio="'deposit'">Depósito</label>
+						</div>
+						<label class="sr-only" for="exampleInputAmount">&nbsp;</label>
+						<div class="input-group">
+							<div class="input-group-addon">R$</div>
+							<input type="number" class="form-control" name="money-value" ng-model="action.value" placeholder="Valor">
+							<div class="input-group-addon">.00</div>
+						</div>
+						<button type="submit" class="btn btn-primary">Efetuar</button>
 					</div>
-					<label class="sr-only" for="exampleInputAmount">&nbsp;</label>
-					<div class="input-group">
-						<div class="input-group-addon">R$</div>
-						<input type="number" class="form-control" name="money-value" ng-model="action.value" placeholder="Valor">
-						<div class="input-group-addon">.00</div>
-					</div>
-					<button type="submit" class="btn btn-primary">Efetuar</button>
+				</div>
+			</div>
+			<div class="col-xs-6">
+				<div class="btn-group centralize">
+					<label class="btn btn-success" ng-model="sortActionType" btn-checkbox-true="'withdraw'" btn-checkbox-false="undefined" uib-btn-checkbox>Saque</label>
+					<label class="btn btn-success" ng-model="sortActionType" btn-checkbox-true="'deposit'" btn-checkbox-false="undefined" uib-btn-checkbox>Depósito</label>
+					<label class="btn btn-success" ng-model="sortValue" btn-checkbox-true="'value'" btn-checkbox-false="undefined" uib-btn-checkbox>Valor</label>
+					<label class="btn btn-success" ng-model="sortReverse" uib-btn-checkbox>
+						<span ng-class="sortReverse ? 'glyphicon glyphicon-sort-by-attributes-alt' : 'glyphicon glyphicon-sort-by-attributes'" aria-hidden="true"></span>
+					</label>
 				</div>
 			</div>
 		</div>
-		<div class="col-xs-6">
-			<div class="btn-group centralize">
-				<label class="btn btn-success" ng-model="sortActionType" btn-checkbox-true="'withdraw'" btn-checkbox-false="undefined" uib-btn-checkbox>Saque</label>
-				<label class="btn btn-success" ng-model="sortActionType" btn-checkbox-true="'deposit'" btn-checkbox-false="undefined" uib-btn-checkbox>Depósito</label>
-				<label class="btn btn-success" ng-model="sortValue" btn-checkbox-true="'value'" btn-checkbox-false="undefined" uib-btn-checkbox>Valor</label>
-				<label class="btn btn-success" ng-model="sortReverse" uib-btn-checkbox>
-					<span ng-class="sortReverse ? 'glyphicon glyphicon-sort-by-attributes-alt' : 'glyphicon glyphicon-sort-by-attributes'" aria-hidden="true"></span>
-				</label>
+	</form>
+	<div class="table-responsive">
+		<table class="table table-hover">
+			<tr>
+				<th>Tipo</th>
+				<th>Valor</th>
+				<th class="text-center">Ação</th>
+			</tr>
+			<tr ng-if="vm.actions.length > 0" ng-repeat="action in vm.actions | filter: sortActionType | orderBy: sortValue : sortReverse">
+				<td>{{ action.actionType | bkFriendlyActionType }}</td>
+				<td>{{ action.value | currency: 'R$ ': 2 }}</td>
+				<td class="text-center">
+					<button type="button" class="btn btn-warning" ng-click="vm.remove(action)">Remover</button>
+				</td>
+			</tr>
+			<tr class="text-center" ng-if="vm.actions.length <= 0">
+				<td colspan="3">Não há dados a serem exibidos.</td>
+			</tr>
+		</table>
+		<p>
+			<div class="col-xs-4" ng-class="vm.total > 0 ? 'alert alert-success' : (vm.total == 0 ? 'alert alert-warning' : 'alert alert-danger')" role="alert">
+				TOTAL EM CONTA: <strong class="account-balance">{{ vm.total | currency: ' R$' : 2 }}</strong>
+				<p><small>Ações Registradas: {{ vm.actions.length }}</small></p>
+				<span class="custom-icon" ng-class="vm.total > 0 ? 'glyphicon glyphicon-thumbs-up' : (vm.total == 0 ? 'glyphicon glyphicon-minus' : 'glyphicon glyphicon-thumbs-down')" aria-hidden="true"></span>
 			</div>
-		</div>
-	</div>
-</form>
-<div class="table-responsive">
-	<table class="table table-hover">
-		<tr>
-			<th>Tipo</th>
-			<th>Valor</th>
-			<th class="text-center">Ação</th>
-		</tr>
-		<tr ng-repeat="action in vm.actions | filter: sortActionType | orderBy: sortValue : sortReverse">
-			<td><a ng-href="#/contatos/{{ contato.id }}">{{ action.actionType | bkFriendlyActionType }}</a></td>
-			<td>{{ action.value | currency: 'R$ ':2 }}</td>
-			<td class="text-center">
-				<button type="button" class="btn btn-warning" ng-click="vm.remove(action)">Remover</button>
-			</td>
-		</tr>
-	</table>
-
-	<ul uib-pagination
-	  ng-model="vm.currentPage"
-	  total-items="vm.actions"
-	  max-size="vm.maxSize"
-	  boundary-links="true">
-  </ul>
-
-	<div class="row information">
-		<div class="col-xs-4">
-			<p ng-show="vm.actions.length">Ações registradas: {{ vm.actions.length }}</p>
-			<p class="text-info" ng-hide="vm.actions.length">Não há Ações registradas</p>
-		</div>
-		<div class="col-xs-8">
-			RESULTADO: {{ vm.total }}
-		</div>
+		</p>
 	</div>
 </div>
