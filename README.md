@@ -1,19 +1,13 @@
-# TestsJS
+# S2IT - BANK
 
-## ABKJ - Angular, Bootstrap, Karma, Jasmine
-Formulário montado com Angular e Bootstrap, onde os testes desenvolvidos farão validações.
 
+**Executar os comandos na linha de comando dentro da pasta do projeto:**
 ```
+npm install -g bower
 npm install
 bower install
+npm start
 ```
 
-Entrar dentro de alguma das subpastas
-```
-http-server -o --cors
-```
-
-Notes (fix):
-package.json:
-scripts: allows configure a command to be executed in CMD in a simple way (in this case, 'npm test' gonna work).
-devDependencies: dependencies that will be downloaded/used just in case of development.
+Styleguide da arquitetura (JohnPapa):
+[https://github.com/johnpapa/angular-styleguide/tree/master/a1](Link URL)

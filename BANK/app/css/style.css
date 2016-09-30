@@ -1,4 +1,13 @@
-.filter-centralize {
+.centralize {
 	display: table !important;
     margin: 0 auto;
+}
+
+.margin-bottom {
+	margin-bottom: 5px;
+}
+
+.information {
+	max-width: 100%;
+	
 }
