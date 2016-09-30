@@ -7,8 +7,8 @@ npm install -g bower
 npm install
 bower install
 
-npm start (ao abrir o browser)
-npm test (testes)
+npm start (inicia a aplicação)
+npm test (roda os testes da aplicação)
 ```
 
 Styleguide da arquitetura (JohnPapa):
