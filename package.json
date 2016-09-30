@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Formulário montado com Angular e Bootstrap, onde os testes desenvolvidos farão validações.",
   "main": "karma.conf.js",
-  "homepage": "https://github.com/Gtosta96/S2IT#readme",
+  "homepage": "https://github.com/Gtosta96/bankS2IT#readme",
   "author": "Gabriel Tosta",
   "license": "ISC",
   "scripts": {
@@ -12,10 +12,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Gtosta96/S2IT.git"
+    "url": "git+https://github.com/Gtosta96/bankS2IT.git"
   },
   "bugs": {
-    "url": "https://github.com/Gtosta96/S2IT/issues"
+    "url": "https://github.com/Gtosta96/bankS2IT/issues"
   },
   "dependencies": {
     "bower": "^1.7.9"
