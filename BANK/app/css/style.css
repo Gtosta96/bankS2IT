@@ -4,7 +4,7 @@
 }
 
 .margin-bottom {
-	margin-bottom: 5px;
+	margin-bottom: 0px;
 }
 
 .information {
@@ -21,4 +21,20 @@
     right: 0px;
     margin: 20px 10px;
     font-size: 40px;
+}
+
+.text-description {
+    font-size: 12px;
+    font-weight: 700;
+    color: #959595;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.block-description {
+	padding: 10px 5px 5px 5px;
+	border-width: 1px 1px 0px 1px;
+	border-radius: 5px 5px 0px 0px;
+	border-color: #ddd;
+	border-style: solid;
 }

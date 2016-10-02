@@ -5,10 +5,11 @@
 		</h1>
 	</div>
 	<form name="actionForm" class="form-inline" ng-submit="vm.addAction(action); action.value = ''">
-		<div class="row margin-bottom">
+		<div class="row">
 			<div class="col-xs-6">
 				<div class="centralize">
-					<div class="form-group">
+					<span class="text-description">Ações</span>
+					<div class="form-group block-description">
 						<div class="btn-group">
 							<label class="btn btn-success" ng-model="action.actionType" uib-btn-radio="'withdraw'" ng-init="action.actionType = 'withdraw'">Saque</label>
 							<label class="btn btn-success" ng-model="action.actionType" uib-btn-radio="'deposit'">Depósito</label>
@@ -25,12 +26,14 @@
 			</div>
 			<div class="col-xs-6">
 				<div class="btn-group centralize">
-					<label class="btn btn-success" ng-model="sortActionType" btn-checkbox-true="'withdraw'" btn-checkbox-false="undefined" uib-btn-checkbox>Saque</label>
-					<label class="btn btn-success" ng-model="sortActionType" btn-checkbox-true="'deposit'" btn-checkbox-false="undefined" uib-btn-checkbox>Depósito</label>
-					<label class="btn btn-success" ng-model="sortValue" btn-checkbox-true="'value'" btn-checkbox-false="undefined" uib-btn-checkbox>Valor</label>
-					<label class="btn btn-success" ng-model="sortReverse" uib-btn-checkbox>
-						<span ng-class="sortReverse ? 'glyphicon glyphicon-sort-by-attributes-alt' : 'glyphicon glyphicon-sort-by-attributes'" aria-hidden="true"></span>
-					</label>
+					<span class="text-description">Filtros</span>
+					<div class="block-description">
+						<label class="btn btn-success" ng-model="sortActionType" btn-checkbox-true="'withdraw'" btn-checkbox-false="undefined" uib-btn-checkbox>Saque</label>
+						<label class="btn btn-success" ng-model="sortActionType" btn-checkbox-true="'deposit'" btn-checkbox-false="undefined" uib-btn-checkbox>Depósito</label>
+						<label class="btn btn-success" ng-model="sortReverse" uib-btn-checkbox>
+							<span ng-class="sortReverse ? 'glyphicon glyphicon-sort-by-attributes-alt' : 'glyphicon glyphicon-sort-by-attributes'" aria-hidden="true"></span>
+						</label>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -42,7 +45,7 @@
 				<th>Valor</th>
 				<th class="text-center">Ação</th>
 			</tr>
-			<tr ng-if="vm.actions.length > 0" ng-repeat="action in vm.actions | filter: sortActionType | orderBy: sortValue : sortReverse">
+			<tr ng-if="vm.actions.length > 0" ng-repeat="action in vm.actions | filter: sortActionType | orderBy: 'withdraw' : sortReverse">
 				<td>{{ action.actionType | bkFriendlyActionType }}</td>
 				<td>{{ action.value | currency: 'R$ ': 2 }}</td>
 				<td class="text-center">
@@ -53,12 +56,10 @@
 				<td colspan="3">Não há dados a serem exibidos.</td>
 			</tr>
 		</table>
-		<p>
-			<div class="col-xs-4" ng-class="vm.total > 0 ? 'alert alert-success' : (vm.total == 0 ? 'alert alert-warning' : 'alert alert-danger')" role="alert">
-				TOTAL EM CONTA: <strong class="account-balance">{{ vm.total | currency: ' R$' : 2 }}</strong>
-				<p><small>Ações Registradas: {{ vm.actions.length }}</small></p>
-				<span class="custom-icon" ng-class="vm.total > 0 ? 'glyphicon glyphicon-thumbs-up' : (vm.total == 0 ? 'glyphicon glyphicon-minus' : 'glyphicon glyphicon-thumbs-down')" aria-hidden="true"></span>
-			</div>
-		</p>
+		<div class="col-xs-4" ng-class="vm.total > 0 ? 'alert alert-success' : (vm.total == 0 ? 'alert alert-warning' : 'alert alert-danger')" role="alert">
+			TOTAL EM CONTA: <strong class="account-balance">{{ vm.total | currency: ' R$' : 2 }}</strong>
+			<p><small>Ações Registradas: {{ vm.actions.length }}</small></p>
+			<span class="custom-icon" ng-class="vm.total > 0 ? 'glyphicon glyphicon-thumbs-up' : (vm.total == 0 ? 'glyphicon glyphicon-minus' : 'glyphicon glyphicon-thumbs-down')" aria-hidden="true"></span>
+		</div>
 	</div>
 </div>
